@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<head>
+  <title>If my country was like Syria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
+</head>
+<style>
+body {
+  background-color: black;
+  width: 600px;
+  font-family: "Space Mono", sans-serif;
+}
+
+img {
+  padding-bottom: 10px;
+}
+
+.introduction {
+  color: white;
+}
+
+.button {
+  background-color: white;
+  border: 1px solid black;
+  margin-right: 2px;
+  padding: 3px 5px 3px 5px;
+  font-family: 'Space Mono', sans-serif;
+  text-align: center;
+  float: left;
+}
+
+.button text {
+  pointer-events: none;
+}
+
+.button:hover {
+}
+
+.button.current {
+  background-color: black;
+  color: white;
+}
+
+#bottombar {
+  margin-left: 10px;
+}
+
+.img-wrapper  {
+    position: relative;
+		max-width: 100%;
+}
+
+.img-wrapper h1 {
+   position: absolute;
+   padding-left: 5px;
+   padding-top:5px;
+   padding-bottom: 5px;
+   top: 280px;
+   width: 600px;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   color: white;
+   font-size: 20px;
+}
+
+.introtext {
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+</style>
+<body>
+  <div class="img-wrapper">
+  <img src="img/ref.jpeg">
+  <h1>IF YOUR COUNTRY FACED CRISIS <br />AS BIG AS WAR IN SYRIA <br /><text style="font-weight: normal;">See how it would affect you and your country</text></h1>
+</div>
+<div class = introduction>If <select id="myCountry" onchange="countryChange()">
+  <option value="Sweden">Sweden</option>
+  <option value="Finland">Finland</option>
+  <option value="China">China</option>
+</select>
+   was like <strong>Syria</strong> <button class = "enter" onclick="run()">Enter scenario</button></div>
+
+<script>
+
+var mycountry = "Sweden";
+var vscountry = "Syrian Arab Republic";
+var blocksEnter;
+var blocksUpdate;
+
+
+//Population calculations
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+
+function countryChange() {
+  mycountry = (document.getElementById("myCountry").value);
+  vscountry = (document.getElementById("vsCoutnry").value);
+}
+
+
+// set the dimensions and margins of the graph
+var margin = {top: 20, right: 30, bottom: 30, left: 30},
+    width = 600 - margin.left - margin.right,
+    height = 240 - margin.top - margin.bottom;
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+
+function run() {
+
+  d3.csv("data/refugeedata.csv", function(error, data) {
+    if (error) throw error;
+
+    data.forEach(function(d) {
+      d.totpop = +d.totpop,
+      d.milpop = d.totpop / 1000000,
+      d.multiplier = 0.24,
+      d["Ref-orig-tot"] = +d["Ref-orig-tot"]*1000
+      d.refpct = d["Ref-orig-tot"]/d.totpop
+    })
+
+    //Chosen country
+    countryData = data.filter(function(d) {
+      return d.Region == mycountry;
+    })
+
+    //Syria data
+    syriaData =   data.filter(function(d) {
+        return d.Region == vscountry;
+      })
+
+    //Decide divider
+
+    var divider = countryData[0]["totpop"] / 500;
+
+
+    var array = []
+
+    var syrianKidPct = 0.47;
+
+    var popblocks = countryData[0]["totpop"] / divider;
+    var leaveCountry = popblocks * syriaData[0]["refpct"]
+    var leaveCountryKids = leaveCountry * syrianKidPct
+
+    for (sq = 0; sq < popblocks; sq++) {
+
+        if(sq < leaveCountry && sq < leaveCountryKids) {
+          array.push({key: sq, id: "refugee", kid: "yes"})
+        } else if (sq < leaveCountry && sq > leaveCountryKids) {
+          array.push({key: sq, id: "refugee", kid: "no"})
+        } else {
+          array.push({key: sq, id: "stay", kid: "no"})
+        }
+      }
+
+      console.log(divider)
+
+    svg.selectAll("myCountryText")
+      .data(countryData).enter()
+      .append("text")
+      .transition()
+      .delay(100)
+      .attr("x", 1)
+      .attr("y", height/2-10)
+      .style("font-family","Space Mono")
+      .attr("fill", "white")
+      .text(function(d) { return "There are " +  roundToTwo(d.milpop) + " million people in " + mycountry; })
+
+    svg.selectAll("myCountryText")
+      .data(syriaData).enter()
+      .append("text")
+      .transition()
+      .delay(1500)
+      .attr("x", 1)
+      .attr("y", height/2 + 10)
+      .style("font-family","Space Mono")
+      .attr("fill", "white")
+      .text(function(d) { return "There are " +  roundToTwo(d.milpop) + " million people in " + "Syria"; })
+
+      svg.selectAll("myCountryText")
+        .data(syriaData).enter()
+        .append("text")
+        .transition()
+        .delay(4500)
+        .attr("x", 1)
+        .attr("y", height - 20)
+        .style("font-family","Space Mono")
+        .attr("fill", "white")
+        .text("Please, click 'Next'")
+
+
+
+
+
+      d3.selectAll(".button")
+        .on("click", function() {
+          if(d3.select(this).attr("stage") == "0") {
+            click1();
+            d3.select(this).attr("stage", "1")
+          } else if (d3.select(this).attr("stage") == "1") {
+            click2();
+            d3.select(this).attr("stage", "2")
+          } else if (d3.select(this).attr("stage") == "2") {
+            click3();
+            d3.select(this).attr("stage", "3")
+          } else if (d3.select(this).attr("stage") == "3") {
+            click4();
+            d3.select(this).attr("stage", "4")
+        } else if (d3.select(this).attr("stage") == "4") {
+          click5();
+          d3.select(this).attr("stage", "5")
+        } else if (d3.select(this).attr("stage") == "5") {
+          click6();
+          d3.select(this).attr("stage", "6")
+        } else if (d3.select(this).attr("stage") == "6") {
+          click7();
+          d3.select(this).attr("stage", "7")
+    }})
+
+      function clickThree() {
+        //Select refugees non-kids
+        svg.selectAll(".refugeenoblocks")
+          .transition()
+          .delay(function(d,i) { return i*10})
+          .attr("fill", "green")
+
+        //Select refugees kids
+        svg.selectAll(".refugeeyesblocks")
+          .transition()
+          .delay(function(d,i) { return i*10})
+          .attr("fill", "green")
+
+
+      }
+
+      function click1() {
+
+        svg.selectAll("text")
+        .remove();
+
+        svg.selectAll("myCountryText")
+          .data(countryData).enter()
+          .append("text")
+          .transition()
+          .delay(500)
+          .attr("x", 1)
+          .attr("y", height/2 - 10)
+          .style("font-family","Space Mono")
+          .attr("fill", "white")
+          .text(function() { return "Prewar population in Syria was " +  24.5 + " million people"; })
+
+          svg.selectAll("myCountryText")
+            .data(syriaData).enter()
+            .append("text")
+            .transition()
+            .delay(2500)
+            .attr("x", 1)
+            .attr("y", height/2 + 10)
+            .style("font-family","Space Mono")
+            .attr("fill", "white")
+            .text(function(d) { return "Population in Syria has decreased by " +  (d.multiplier) * 100 + " percent"; })
+
+          svg.selectAll("myCountryText")
+            .data(countryData).enter()
+            .append("text")
+            .transition()
+            .delay(5500)
+            .attr("x", 1)
+            .attr("y", height/2 + 40)
+            .style("font-family","Space Mono")
+            .attr("fill", "white")
+            .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; })
+
+          svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(8000)
+              .attr("x", 1)
+              .attr("y", height/2 + 60)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function(d) { return "there would be " + roundToTwo(d.multiplier * d.milpop) + " million people less than prewar"; })
+
+              svg.selectAll("myCountryText")
+                .data(syriaData).enter()
+                .append("text")
+                .transition()
+                .delay(10500)
+                .attr("x", 1)
+                .attr("y", height - 10)
+                .style("font-family","Space Mono")
+                .attr("fill", "white")
+                .text("Please, click 'Next'")
+
+
+        }
+
+      function click2() {
+
+          svg.selectAll("text")
+          .remove();
+
+          svg.selectAll("myCountryText")
+            .data(countryData).enter()
+            .append("text")
+            .transition()
+            .delay(500)
+            .attr("x", 1)
+            .attr("y", height/2 - 10)
+            .style("font-family","Space Mono")
+            .attr("fill", "white")
+            .text(function() { return "You will see 500 blocks representing"; })
+
+            svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(500)
+              .attr("x", 1)
+              .attr("y", height/2 + 10)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return "population of " + mycountry; })
+
+              svg.selectAll("myCountryText")
+                .data(countryData).enter()
+                .append("rect")
+                .transition()
+                .delay(2500)
+                .attr("x", 35)
+                .attr("y", height/2 + 30)
+                .attr("height", 10)
+                .attr("width", 10)
+                .attr("fill", "gray")
+
+            svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(2500)
+              .attr("x", 1)
+              .attr("y", height/2 + 40)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return "One " + "_" + "= " + Math.floor(divider) + " persons"; })
+
+              svg.selectAll("myCountryText")
+                .data(syriaData).enter()
+                .append("text")
+                .transition()
+                .delay(4500)
+                .attr("x", 1)
+                .attr("y", height - 20)
+                .style("font-family","Space Mono")
+                .attr("fill", "white")
+                .text("Please, click 'Next'")
+
+
+        }
+
+      //Append rects
+      function click3() {
+
+          svg.selectAll("text")
+          .remove();
+
+          svg.selectAll("rect")
+          .remove();
+
+          svg.selectAll("myCountryText")
+            .data(countryData).enter()
+            .append("text")
+            .transition()
+            .delay(500)
+            .attr("x", width-160)
+            .attr("y", 10)
+            .style("font-family","Space Mono")
+            .attr("fill", "white")
+            .text(function() { return "This is the"; })
+
+            svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(500)
+              .attr("x", width-160)
+              .attr("y", 30)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return "population of"; })
+
+            svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(500)
+              .attr("x", width-160)
+              .attr("y", 50)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return mycountry; })
+
+              svg.selectAll("myCountryText")
+                .data(countryData).enter()
+                .append("text")
+                .transition()
+                .delay(3000)
+                .attr("x", width-160)
+                .attr("y", 100)
+                .style("font-family","Space Mono")
+                .attr("fill", "white")
+                .text(function() { return "What if"; })
+
+                svg.selectAll("myCountryText")
+                  .data(countryData).enter()
+                  .append("text")
+                  .transition()
+                  .delay(3000)
+                  .attr("x", width-160)
+                  .attr("y", 120)
+                  .style("font-family","Space Mono")
+                  .attr("fill", "white")
+                  .text(function() { return mycountry; })
+
+                svg.selectAll("myCountryText")
+                  .data(countryData).enter()
+                  .append("text")
+                  .transition()
+                  .delay(3000)
+                  .attr("x", width-160)
+                  .attr("y", 140)
+                  .style("font-family","Space Mono")
+                  .attr("fill", "white")
+                  .text(function() { return "had as many"; })
+
+                svg.selectAll("myCountryText")
+                  .data(countryData).enter()
+                  .append("text")
+                  .transition()
+                  .delay(3000)
+                  .attr("x", width-160)
+                  .attr("y", 160)
+                  .style("font-family","Space Mono")
+                  .attr("fill", "white")
+                  .text(function() { return "refugees"; })
+
+                  svg.selectAll("myCountryText")
+                    .data(countryData).enter()
+                    .append("text")
+                    .transition()
+                    .delay(3000)
+                    .attr("x", width-160)
+                    .attr("y", 180)
+                    .style("font-family","Space Mono")
+                    .attr("fill", "white")
+                    .text(function() { return "as Syria"; })
+
+
+          blocksUpdate = svg.selectAll("blocks")
+              .data(array)
+
+          blocksEnter = blocksUpdate
+            .enter()
+            .append("rect")
+            .transition()
+            .delay(function(d,i) { return i*5; })
+            .attr("class", function(d) { return d.id + "blocks"})
+            .attr("x", function(d) { return (d.key % 30) * 12; })
+            .attr("y", function(d) { return Math.floor(d.key/30) * 12; })
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("fill", "gray");
+
+          }
+
+      //Fill refugees
+      function click4() {
+        svg.selectAll("text")
+        .remove();
+
+        svg.selectAll("myCountryText")
+          .data(countryData).enter()
+          .append("text")
+          .transition()
+          .delay(500)
+          .attr("x", width-160)
+          .attr("y", 10)
+          .style("font-family","Space Mono")
+          .attr("fill", "white")
+          .text(function() { return "This would be"; })
+
+          svg.selectAll("myCountryText")
+            .data(countryData).enter()
+            .append("text")
+            .transition()
+            .delay(500)
+            .attr("x", width-160)
+            .attr("y", 30)
+            .style("font-family","Space Mono")
+            .attr("fill", "white")
+            .text(function() { return "proportion of "; })
+
+            svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(500)
+              .attr("x", width-160)
+              .attr("y", 50)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return "refugees in "; })
+
+            svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(500)
+              .attr("x", width-160)
+              .attr("y", 70)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return mycountry; })
+
+              svg.selectAll("myCountryText")
+                .data(countryData).enter()
+                .append("text")
+                .transition()
+                .delay(2500)
+                .attr("x", width-160)
+                .attr("y", 120)
+                .style("font-family","Space Mono")
+                .attr("fill", "white")
+                .text(function() { return "It sums up to"; })
+
+                svg.selectAll("myCountryText")
+                  .data(countryData).enter()
+                  .append("text")
+                  .transition()
+                  .delay(2500)
+                  .attr("x", width-160)
+                  .attr("y", 140)
+                  .style("font-family","Space Mono")
+                  .attr("fill", "white")
+                  .text(function() { return roundToTwo((leaveCountry*divider) / 1000000) + " million"; })
+
+                svg.selectAll("myCountryText")
+                  .data(countryData).enter()
+                  .append("text")
+                  .transition()
+                  .delay(2500)
+                  .attr("x", width-160)
+                  .attr("y", 160)
+                  .style("font-family","Space Mono")
+                  .attr("fill", "white")
+                  .text(function() { return "people"; })
+
+
+          svg.selectAll(".refugeeblocks")
+            .transition()
+            .delay(function(d,i) { return i*10})
+            .attr("fill", "red")
+            .style("opacity", 0.5)
+            .attr("class", function(d) { return d.id + d.kid + "blocks"; })
+
+
+      }
+
+      function click5() {
+
+        svg.selectAll("text")
+        .remove();
+
+        svg.selectAll("myCountryText")
+          .data(countryData).enter()
+          .append("text")
+          .transition()
+          .delay(500)
+          .attr("x", width-160)
+          .attr("y", 10)
+          .style("font-family","Space Mono")
+          .attr("fill", "white")
+          .text(function() { return "Can you guess"; })
+
+          svg.selectAll("myCountryText")
+            .data(countryData).enter()
+            .append("text")
+            .transition()
+            .delay(500)
+            .attr("x", width-160)
+            .attr("y", 30)
+            .style("font-family","Space Mono")
+            .attr("fill", "white")
+            .text(function() { return "how many of them"; })
+
+            svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(500)
+              .attr("x", width-160)
+              .attr("y", 50)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return "would be"; })
+
+              svg.selectAll("myCountryText")
+                .data(countryData).enter()
+                .append("text")
+                .transition()
+                .delay(500)
+                .attr("x", width-160)
+                .attr("y", 70)
+                .style("font-family","Space Mono")
+                .attr("fill", "white")
+                .text(function() { return "under 18?"; })
+
+      }
+
+      function click6() {
+
+        svg.selectAll("text")
+          .remove();
+
+          svg.selectAll("myCountryText")
+            .data(countryData).enter()
+            .append("text")
+            .transition()
+            .delay(500)
+            .attr("x", width-160)
+            .attr("y", 10)
+            .style("font-family","Space Mono")
+            .attr("fill", "white")
+            .text(function() { return "It's total of"; })
+
+            svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(500)
+              .attr("x", width-160)
+              .attr("y", 30)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return roundToTwo((leaveCountry*divider*syrianKidPct) / 1000000) + " million"; })
+
+              svg.selectAll("myCountryText")
+                .data(countryData).enter()
+                .append("text")
+                .transition()
+                .delay(500)
+                .attr("x", width-160)
+                .attr("y", 50)
+                .style("font-family","Space Mono")
+                .attr("fill", "white")
+                .text(function() { return "children and teens"; })
+
+          svg.selectAll(".refugeeyesblocks")
+            .transition()
+            .delay(function(d,i) { return i*10})
+            .style("opacity", 1)
+      }
+
+      function click7() {
+
+        svg.selectAll("text")
+        .transition()
+        .delay(100)
+        .remove();
+
+        svg.selectAll("rect")
+        .transition()
+        .delay(100)
+        .remove();
+
+        svg.selectAll("myCountryText")
+          .data(countryData).enter()
+          .append("text")
+          .transition()
+          .delay(1500)
+          .attr("x", 1)
+          .attr("y", height/2 - 10)
+          .style("font-family","Space Mono")
+          .attr("fill", "white")
+          .text(function() { return "No matter how far you are from Syria"; })
+
+          svg.selectAll("myCountryText")
+            .data(countryData).enter()
+            .append("text")
+            .transition()
+            .delay(4500)
+            .attr("x", 1)
+            .attr("y", height/2 + 10)
+            .style("font-family","Space Mono")
+            .attr("fill", "white")
+            .text(function() { return "we all should care"; })
+
+          svg.selectAll("myCountryText")
+              .data(countryData).enter()
+              .append("text")
+              .transition()
+              .delay(7500)
+              .attr("x", 1)
+              .attr("y", height - 20)
+              .style("font-family","Space Mono")
+              .attr("fill", "white")
+              .text(function() { return "Give your Support"; })
+
+
+
+      }
+
+
+
+
+
+
+});
+
+}
+
+</script>
+<div id="bottombar">
+<div class = "button" stage = "0"><text class = "next">Next</text></div>
+</div>
+</body>
