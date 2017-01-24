@@ -1,0 +1,243 @@
+body {
+  background-color: black;
+  width: 600px;
+  font-family: "Space Mono", sans-serif;
+}
+
+
+.enter {
+	-moz-box-shadow:inset 0px 34px 0px -15px #800000;
+	-webkit-box-shadow:inset 0px 34px 0px -15px #800000;
+	box-shadow:inset 0px 34px 0px -15px #800000;
+	background-color:#800000;
+	border:1px solid #241d13;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Space Mono;
+	font-size:15px;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #800000;
+}
+.enter:hover {
+	background-color:#800000;
+}
+.enter:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+
+
+img {
+  padding-bottom: 10px;
+}
+
+.introduction {
+  color: white;
+  font-size: 16px;
+}
+
+select {
+  /* styling */
+  background: white;
+    width: 200px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border-radius: 0;
+    height: 32px;
+    -webkit-appearance: none;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+#header h1 {
+  opacity: 0;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -webkit-animation-delay: 1s; /* Safari 4.0 - 8.0 */
+
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+            animation-delay: 1s;
+
+            animation-fill-mode:forwards
+
+
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#header-text p {
+  opacity: 0;
+  font-size: 16px;
+  color: white;
+  -webkit-animation: fadein2 2s; /* Safari, Chrome and Opera > 12.1 */
+  -webkit-animation-delay: 3s; /* Safari 4.0 - 8.0 */
+
+       -moz-animation: fadein2 2s; /* Firefox < 16 */
+        -ms-animation: fadein2 2s; /* Internet Explorer */
+         -o-animation: fadein2 2s; /* Opera < 12.1 */
+            animation: fadein2 2s;
+            animation-delay: 3s;
+
+            animation-fill-mode:forwards
+
+}
+
+@keyframes fadein2 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein2 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein2 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein2 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein2 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.floatbutton {
+  float: left;
+}
+
+.selector {
+  float: left;
+}
+
+.introduction {
+  opacity: 0;
+  color: white;
+  -webkit-animation: fadein3 2s; /* Safari, Chrome and Opera > 12.1 */
+  -webkit-animation-delay: 6s; /* Safari 4.0 - 8.0 */
+
+       -moz-animation: fadein3 2s; /* Firefox < 16 */
+        -ms-animation: fadein3 2s; /* Internet Explorer */
+         -o-animation: fadein3 2s; /* Opera < 12.1 */
+            animation: fadein3 2s;
+            animation-delay: 6s;
+
+            animation-fill-mode:forwards
+
+}
+
+@keyframes fadein3 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein3 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein3 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein3 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein3 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.button {
+  background-color: white;
+  border: 1px solid black;
+  margin-right: 2px;
+  padding: 3px 5px 3px 5px;
+  font-family: 'Space Mono', sans-serif;
+  text-align: center;
+  float: left;
+  opacity: 0;
+}
+
+.button text {
+  pointer-events: none;
+}
+
+.button:hover {
+}
+
+.button.current {
+  background-color: black;
+  color: white;
+}
+
+#bottombar {
+  margin-left: 10px;
+}
+
+h1 {
+   color: white;
+}
+
+p {
+   color: white;
+   font-size: 16px;
+}
+
+.introtext {
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

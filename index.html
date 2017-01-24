@@ -1,99 +1,255 @@
 <!DOCTYPE html>
 <head>
   <title>If my country was like Syria</title>
-  <meta name="viewport" content="width=device-width, initial-scale=0.5">
-	<meta charset="UTF-8">
+  <meta name="viewport" content="width=600, initial-scale=1">
+  <meta charset="UTF-8">
 	<link rel="stylesheet" href="style/style.css">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
 </head>
 <style>
-body {
-  background-color: black;
-  width: 600px;
-  font-family: "Space Mono", sans-serif;
-}
-
-img {
-  padding-bottom: 10px;
-}
-
-.introduction {
-  color: white;
-}
-
-.button {
-  background-color: white;
-  border: 1px solid black;
-  margin-right: 2px;
-  padding: 3px 5px 3px 5px;
-  font-family: 'Space Mono', sans-serif;
-  text-align: center;
-  float: left;
-  opacity: 0;
-}
-
-.button text {
-  pointer-events: none;
-}
-
-.button:hover {
-}
-
-.button.current {
-  background-color: black;
-  color: white;
-}
-
-#bottombar {
-  margin-left: 10px;
-}
-
-.img-wrapper  {
-    position: relative;
-		max-width: 100%;
-}
-
-.img-wrapper h1 {
-   position: absolute;
-   padding-left: 5px;
-   padding-top:5px;
-   padding-bottom: 5px;
-   top: 280px;
-   width: 600px;
-   background: rgb(0, 0, 0); /* fallback color */
-   background: rgba(0, 0, 0, 0.7);
-   color: white;
-   font-size: 20px;
-}
-
-.introtext {
-  color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
 
 </style>
 <body>
-  <div class="img-wrapper">
-  <img src="img/ref.jpeg">
-  <h1>IF YOUR COUNTRY FACED CRISIS <br />AS BIG AS WAR IN SYRIA <br /><text style="font-weight: normal;">See how it would affect you and your countrymen</text></h1>
-</div>
-<div class = introduction>If <select id="myCountry" onchange="countryChange()">
-  <option value="Sweden">Sweden</option>
-  <option value="Finland">Finland</option>
-  <option value="China">China</option>
+  <div id = "header"><h1>WHAT IF YOUR COUNTRY FACED CRISIS AS BIG AS WAR IN SYRIA?</h1></div>
+  <div id = "header-text"><p>See how it would affect you and your countrymen</p></div>
+  <div class = introduction><hr><p>
+If <select id="myCountry" onchange="countryChange()">
+  <option value='USA'>USA</option>
+  <option value='Afghanistan'>Afghanistan</option>
+  <option value='Albania'>Albania</option>
+  <option value='Algeria'>Algeria</option>
+  <option value='American Samoa'>American Samoa</option>
+  <option value='Andorra'>Andorra</option>
+  <option value='Angola'>Angola</option>
+  <option value='Anguilla'>Anguilla</option>
+  <option value='Antigua and Barbuda'>Antigua and Barbuda</option>
+  <option value='Argentina'>Argentina</option>
+  <option value='Armenia'>Armenia</option>
+  <option value='Aruba'>Aruba</option>
+  <option value='Australia'>Australia</option>
+  <option value='Austria'>Austria</option>
+  <option value='Azerbaijan'>Azerbaijan</option>
+  <option value='Bahamas'>Bahamas</option>
+  <option value='Bahrain'>Bahrain</option>
+  <option value='Bangladesh'>Bangladesh</option>
+  <option value='Barbados'>Barbados</option>
+  <option value='Belarus'>Belarus</option>
+  <option value='Belgium'>Belgium</option>
+  <option value='Belize'>Belize</option>
+  <option value='Benin'>Benin</option>
+  <option value='Bermuda'>Bermuda</option>
+  <option value='Bhutan'>Bhutan</option>
+  <option value='Bolivia'>Bolivia</option>
+  <option value='Bosnia and Herzegovina'>Bosnia and Herzegovina</option>
+  <option value='Botswana'>Botswana</option>
+  <option value='Brazil'>Brazil</option>
+  <option value='British Virgin Islands'>British Virgin Islands</option>
+  <option value='Brunei Darussalam'>Brunei Darussalam</option>
+  <option value='Bulgaria'>Bulgaria</option>
+  <option value='Burkina Faso'>Burkina Faso</option>
+  <option value='Burundi'>Burundi</option>
+  <option value='Cabo Verde'>Cabo Verde</option>
+  <option value='Cambodia'>Cambodia</option>
+  <option value='Cameroon'>Cameroon</option>
+  <option value='Canada'>Canada</option>
+  <option value='Cayman Islands'>Cayman Islands</option>
+  <option value='Central African Republic'>Central African Republic</option>
+  <option value='Chad'>Chad</option>
+  <option value='Channel Islands'>Channel Islands</option>
+  <option value='Chile'>Chile</option>
+  <option value='China'>China</option>
+  "<option value='China, Hong Kong SAR'>China, Hong Kong SAR</option>"
+  "<option value='China, Macao SAR'>China, Macao SAR</option>"
+  <option value='Colombia'>Colombia</option>
+  <option value='Comoros'>Comoros</option>
+  <option value='Congo'>Congo</option>
+  <option value='Cook Islands'>Cook Islands</option>
+  <option value='Costa Rica'>Costa Rica</option>
+  <option value='Cote d'Ivoire'>Cote d'Ivoire</option>
+  <option value='Croatia'>Croatia</option>
+  <option value='Cuba'>Cuba</option>
+  <option value='Curacao'>Curacao</option>
+  <option value='Cyprus'>Cyprus</option>
+  <option value='Czech Republic'>Czech Republic</option>
+  <option value='Congo'>Congo</option>
+  <option value='Denmark'>Denmark</option>
+  <option value='Djibouti'>Djibouti</option>
+  <option value='Dominica'>Dominica</option>
+  <option value='Dominican Republic'>Dominican Republic</option>
+  <option value='DPR Korea'>DPR Korea</option>
+  <option value='Ecuador'>Ecuador</option>
+  <option value='Egypt'>Egypt</option>
+  <option value='El Salvador'>El Salvador</option>
+  <option value='Equatorial Guinea'>Equatorial Guinea</option>
+  <option value='Eritrea'>Eritrea</option>
+  <option value='Estonia'>Estonia</option>
+  <option value='Ethiopia'>Ethiopia</option>
+  <option value='Faeroe Islands'>Faeroe Islands</option>
+  <option value='Falkland Islands'>Falkland Islands</option>
+  <option value='Fiji'>Fiji</option>
+  <option value='Finland'>Finland</option>
+  <option value='France'>France</option>
+  <option value='French Guiana'>French Guiana</option>
+  <option value='French Polynesia'>French Polynesia</option>
+  <option value='Gabon'>Gabon</option>
+  <option value='Gambia'>Gambia</option>
+  <option value='Georgia'>Georgia</option>
+  <option value='Germany'>Germany</option>
+  <option value='Ghana'>Ghana</option>
+  <option value='Gibraltar'>Gibraltar</option>
+  <option value='Greece'>Greece</option>
+  <option value='Greenland'>Greenland</option>
+  <option value='Grenada'>Grenada</option>
+  <option value='Guadeloupe'>Guadeloupe</option>
+  <option value='Guam'>Guam</option>
+  <option value='Guatemala'>Guatemala</option>
+  <option value='Guinea'>Guinea</option>
+  <option value='Guinea-Bissau'>Guinea-Bissau</option>
+  <option value='Guyana'>Guyana</option>
+  <option value='Haiti'>Haiti</option>
+  <option value='Holy See'>Holy See</option>
+  <option value='Honduras'>Honduras</option>
+  <option value='Hungary'>Hungary</option>
+  <option value='Iceland'>Iceland</option>
+  <option value='India'>India</option>
+  <option value='Indonesia'>Indonesia</option>
+  <option value='Iran'>Iran</option>
+  <option value='Iraq'>Iraq</option>
+  <option value='Ireland'>Ireland</option>
+  <option value='Isle of Man'>Isle of Man</option>
+  <option value='Israel'>Israel</option>
+  <option value='Italy'>Italy</option>
+  <option value='Jamaica'>Jamaica</option>
+  <option value='Japan'>Japan</option>
+  <option value='Jordan'>Jordan</option>
+  <option value='Kazakhstan'>Kazakhstan</option>
+  <option value='Kenya'>Kenya</option>
+  <option value='Kiribati'>Kiribati</option>
+  <option value='Kuwait'>Kuwait</option>
+  <option value='Kyrgyzstan'>Kyrgyzstan</option>
+  <option value='Lao PDR'>Lao PDR</option>
+  <option value='Latvia'>Latvia</option>
+  <option value='Lebanon'>Lebanon</option>
+  <option value='Lesotho'>Lesotho</option>
+  <option value='Liberia'>Liberia</option>
+  <option value='Libya'>Libya</option>
+  <option value='Liechtenstein'>Liechtenstein</option>
+  <option value='Lithuania'>Lithuania</option>
+  <option value='Luxembourg'>Luxembourg</option>
+  <option value='Madagascar'>Madagascar</option>
+  <option value='Malawi'>Malawi</option>
+  <option value='Malaysia'>Malaysia</option>
+  <option value='Maldives'>Maldives</option>
+  <option value='Mali'>Mali</option>
+  <option value='Malta'>Malta</option>
+  <option value='Marshall Islands'>Marshall Islands</option>
+  <option value='Martinique'>Martinique</option>
+  <option value='Mauritania'>Mauritania</option>
+  <option value='Mauritius'>Mauritius</option>
+  <option value='Mayotte'>Mayotte</option>
+  <option value='Mexico'>Mexico</option>
+  <option value='Micronesia'>Micronesia</option>
+  <option value='Monaco'>Monaco</option>
+  <option value='Mongolia'>Mongolia</option>
+  <option value='Montenegro'>Montenegro</option>
+  <option value='Montserrat'>Montserrat</option>
+  <option value='Morocco'>Morocco</option>
+  <option value='Mozambique'>Mozambique</option>
+  <option value='Myanmar'>Myanmar</option>
+  <option value='Namibia'>Namibia</option>
+  <option value='Nauru'>Nauru</option>
+  <option value='Nepal'>Nepal</option>
+  <option value='Netherlands'>Netherlands</option>
+  <option value='New Caledonia'>New Caledonia</option>
+  <option value='New Zealand'>New Zealand</option>
+  <option value='Nicaragua'>Nicaragua</option>
+  <option value='Niger'>Niger</option>
+  <option value='Nigeria'>Nigeria</option>
+  <option value='Niue'>Niue</option>
+  <option value='Norway'>Norway</option>
+  <option value='Oman'>Oman</option>
+  <option value='Pakistan'>Pakistan</option>
+  <option value='Palau'>Palau</option>
+  <option value='Panama'>Panama</option>
+  <option value='Papua New Guinea'>Papua New Guinea</option>
+  <option value='Paraguay'>Paraguay</option>
+  <option value='Peru'>Peru</option>
+  <option value='Philippines'>Philippines</option>
+  <option value='Poland'>Poland</option>
+  <option value='Portugal'>Portugal</option>
+  <option value='Puerto Rico'>Puerto Rico</option>
+  <option value='Qatar'>Qatar</option>
+  <option value='Republic of Korea'>Republic of Korea</option>
+  <option value='Republic of Moldova'>Republic of Moldova</option>
+  <option value='Réunion'>Réunion</option>
+  <option value='Romania'>Romania</option>
+  <option value='Russian Federation'>Russian Federation</option>
+  <option value='Rwanda'>Rwanda</option>
+  <option value='Saint Helena'>Saint Helena</option>
+  <option value='Saint Kitts and Nevis'>Saint Kitts and Nevis</option>
+  <option value='Saint Lucia'>Saint Lucia</option>
+  <option value='Samoa'>Samoa</option>
+  <option value='San Marino'>San Marino</option>
+  <option value='Sao Tome and Principe'>Sao Tome and Principe</option>
+  <option value='Saudi Arabia'>Saudi Arabia</option>
+  <option value='Senegal'>Senegal</option>
+  <option value='Serbia'>Serbia</option>
+  <option value='Seychelles'>Seychelles</option>
+  <option value='Sierra Leone'>Sierra Leone</option>
+  <option value='Singapore'>Singapore</option>
+  <option value='Slovakia'>Slovakia</option>
+  <option value='Slovenia'>Slovenia</option>
+  <option value='Solomon Islands'>Solomon Islands</option>
+  <option value='Somalia'>Somalia</option>
+  <option value='South Africa'>South Africa</option>
+  <option value='South Sudan'>South Sudan</option>
+  <option value='Spain'>Spain</option>
+  <option value='Sri Lanka'>Sri Lanka</option>
+  <option value='Palestine'>Palestine</option>
+  <option value='Sudan'>Sudan</option>
+  <option value='Suriname'>Suriname</option>
+  <option value='Swaziland'>Swaziland</option>
+  <option value='Sweden'>Sweden</option>
+  <option value='Switzerland'>Switzerland</option>
+  <option value='Tajikistan'>Tajikistan</option>
+  <option value='Thailand'>Thailand</option>
+  <option value='Timor-Leste'>Timor-Leste</option>
+  <option value='Togo'>Togo</option>
+  <option value='Tokelau'>Tokelau</option>
+  <option value='Tonga'>Tonga</option>
+  <option value='Trinidad and Tobago'>Trinidad and Tobago</option>
+  <option value='Tunisia'>Tunisia</option>
+  <option value='Turkey'>Turkey</option>
+  <option value='Turkmenistan'>Turkmenistan</option>
+  <option value='Tuvalu'>Tuvalu</option>
+  <option value='Uganda'>Uganda</option>
+  <option value='Ukraine'>Ukraine</option>
+  <option value='United Arab Emirates'>United Arab Emirates</option>
+  <option value='UK and NIR'>UK and NIR</option>
+  <option value='Tanzania'>Tanzania</option>
+  <option value='Virgin Islands'>Virgin Islands</option>
+  <option value='Uruguay'>Uruguay</option>
+  <option value='Uzbekistan'>Uzbekistan</option>
+  <option value='Vanuatu'>Vanuatu</option>
+  <option value='Venezuela'>Venezuela</option>
+  <option value='Viet Nam'>Viet Nam</option>
+  <option value='Western Sahara'>Western Sahara</option>
+  <option value='Yemen'>Yemen</option>
+  <option value='Zambia'>Zambia</option>
+  <option value='Zimbabwe'>Zimbabwe</option>
 </select>
-   was in situation like <strong>Syria</strong> <button class = "enter" onclick="run()">Enter scenario</button></div>
+   was in situation like <strong>Syria </strong></p><p><button class = "enter" onclick="run()">Enter scenario ↓</button></p><hr></div>
 
 <script>
 
-var mycountry = "Sweden";
+var mycountry = "USA";
 var vscountry = "Syrian Arab Republic";
 var blocksEnter;
 var blocksUpdate;
 
+var myCountryText;
 
 //Population calculations
 function roundToTwo(num) {
@@ -102,7 +258,6 @@ function roundToTwo(num) {
 
 function countryChange() {
   mycountry = (document.getElementById("myCountry").value);
-  vscountry = (document.getElementById("vsCoutnry").value);
 }
 
 
@@ -121,11 +276,17 @@ var margin = {top: 20, right: 30, bottom: 30, left: 30},
 
 function run() {
 
+  d3.selectAll(".next")
+    .text("Next")
+
   svg.selectAll("text")
     .remove();
 
   svg.selectAll("rect")
     .remove();
+
+
+
 
   d3.select(".button").attr("stage", "0")
     .style("opacity", 1);
@@ -156,9 +317,16 @@ function run() {
     var divider = countryData[0]["totpop"] / 500;
 
 
+    var dividerPretty = Math.round(divider / 1000) * 1000;
+
+    if (dividerPretty == 0) {
+      dividerPretty = Math.round(divider);
+    }
+
     var array = []
 
     var syrianKidPct = 0.47;
+    var prewarPop = 24.5;
 
     var popblocks = countryData[0]["totpop"] / divider;
     var leaveCountry = popblocks * syriaData[0]["refpct"]
@@ -175,7 +343,6 @@ function run() {
         }
       }
 
-      console.log(divider)
 
     svg.selectAll("myCountryText")
       .data(countryData).enter()
@@ -186,7 +353,8 @@ function run() {
       .attr("y", height/2-10)
       .style("font-family","Space Mono")
       .attr("fill", "white")
-      .text(function(d) { return "There are " +  roundToTwo(d.milpop) + " million people in " + mycountry; })
+      .attr("font-size", "16px")
+      .text(function(d) { return "There are " +  roundToTwo(d.milpop).toLocaleString() + " million people in " + mycountry; })
 
     svg.selectAll("myCountryText")
       .data(syriaData).enter()
@@ -197,7 +365,8 @@ function run() {
       .attr("y", height/2 + 10)
       .style("font-family","Space Mono")
       .attr("fill", "white")
-      .text(function(d) { return "There are " +  roundToTwo(d.milpop) + " million people in " + "Syria"; })
+      .attr("font-size", "16px")
+      .text(function(d) { return "There are " +  roundToTwo(d.milpop).toLocaleString() + " million people in " + "Syria"; })
 
       svg.selectAll("myCountryText")
         .data(syriaData).enter()
@@ -208,6 +377,7 @@ function run() {
         .attr("y", height - 20)
         .style("font-family","Space Mono")
         .attr("fill", "white")
+        .attr("font-size", "16px")
         .text("Please, click 'Next'")
 
 
@@ -237,23 +407,11 @@ function run() {
         } else if (d3.select(this).attr("stage") == "6") {
           click7();
           d3.select(this).attr("stage", "7")
-    }})
+        } else if (d3.select(this).attr("stage") == "7") {
+        d3.select(this).attr("stage", "0")
+        run();
+}})
 
-      function clickThree() {
-        //Select refugees non-kids
-        svg.selectAll(".refugeenoblocks")
-          .transition()
-          .delay(function(d,i) { return i*10})
-          .attr("fill", "green")
-
-        //Select refugees kids
-        svg.selectAll(".refugeeyesblocks")
-          .transition()
-          .delay(function(d,i) { return i*10})
-          .attr("fill", "green")
-
-
-      }
 
       function click1() {
 
@@ -269,7 +427,8 @@ function run() {
           .attr("y", height/2 - 10)
           .style("font-family","Space Mono")
           .attr("fill", "white")
-          .text(function() { return "Prewar population in Syria was " +  24.5 + " million people"; })
+          .attr("font-size", "16px")
+          .text(function() { return "Prewar population in Syria was " +  prewarPop.toLocaleString() + " million people"; })
 
           svg.selectAll("myCountryText")
             .data(syriaData).enter()
@@ -280,6 +439,7 @@ function run() {
             .attr("y", height/2 + 10)
             .style("font-family","Space Mono")
             .attr("fill", "white")
+            .attr("font-size", "16px")
             .text(function(d) { return "Population in Syria has decreased by " +  (d.multiplier) * 100 + " percent"; })
 
           svg.selectAll("myCountryText")
@@ -291,6 +451,7 @@ function run() {
             .attr("y", height/2 + 40)
             .style("font-family","Space Mono")
             .attr("fill", "white")
+            .attr("font-size", "16px")
             .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; })
 
           svg.selectAll("myCountryText")
@@ -302,7 +463,8 @@ function run() {
               .attr("y", height/2 + 60)
               .style("font-family","Space Mono")
               .attr("fill", "white")
-              .text(function(d) { return "there would be " + roundToTwo(d.multiplier * d.milpop) + " million people less than prewar"; })
+              .attr("font-size", "16px")
+              .text(function(d) { return "there would be " + roundToTwo(d.multiplier * d.milpop).toLocaleString() + " million people less than prewar"; })
 
               svg.selectAll("myCountryText")
                 .data(syriaData).enter()
@@ -313,6 +475,7 @@ function run() {
                 .attr("y", height - 10)
                 .style("font-family","Space Mono")
                 .attr("fill", "white")
+                .attr("font-size", "16px")
                 .text("Please, click 'Next'")
 
 
@@ -332,6 +495,7 @@ function run() {
             .attr("y", height/2 - 10)
             .style("font-family","Space Mono")
             .attr("fill", "white")
+            .attr("font-size", "16px")
             .text(function() { return "You will see 500 blocks representing"; })
 
             svg.selectAll("myCountryText")
@@ -343,6 +507,7 @@ function run() {
               .attr("y", height/2 + 10)
               .style("font-family","Space Mono")
               .attr("fill", "white")
+              .attr("font-size", "16px")
               .text(function() { return "population of " + mycountry; })
 
               svg.selectAll("myCountryText")
@@ -350,7 +515,7 @@ function run() {
                 .append("rect")
                 .transition()
                 .delay(2500)
-                .attr("x", 35)
+                .attr("x", 36)
                 .attr("y", height/2 + 30)
                 .attr("height", 10)
                 .attr("width", 10)
@@ -365,7 +530,9 @@ function run() {
               .attr("y", height/2 + 40)
               .style("font-family","Space Mono")
               .attr("fill", "white")
-              .text(function() { return "One " + "_" + "= " + Math.floor(divider) + " persons"; })
+              .attr("xml:space", "preserve")
+              .attr("font-size", "16px")
+              .text(function() { return "One " + " " + "= " + dividerPretty.toLocaleString() + " persons"; })
 
               svg.selectAll("myCountryText")
                 .data(syriaData).enter()
@@ -376,6 +543,7 @@ function run() {
                 .attr("y", height - 20)
                 .style("font-family","Space Mono")
                 .attr("fill", "white")
+                .attr("font-size", "16px")
                 .text("Please, click 'Next'")
 
 
@@ -399,6 +567,7 @@ function run() {
             .attr("y", 10)
             .style("font-family","Space Mono")
             .attr("fill", "white")
+            .attr("font-size", "16px")
             .text(function() { return "This is the"; })
 
             svg.selectAll("myCountryText")
@@ -410,6 +579,7 @@ function run() {
               .attr("y", 30)
               .style("font-family","Space Mono")
               .attr("fill", "white")
+              .attr("font-size", "16px")
               .text(function() { return "population of"; })
 
             svg.selectAll("myCountryText")
@@ -421,6 +591,7 @@ function run() {
               .attr("y", 50)
               .style("font-family","Space Mono")
               .attr("fill", "white")
+              .attr("font-size", "16px")
               .text(function() { return mycountry; })
 
               svg.selectAll("myCountryText")
@@ -432,6 +603,7 @@ function run() {
                 .attr("y", 100)
                 .style("font-family","Space Mono")
                 .attr("fill", "white")
+                .attr("font-size", "16px")
                 .text(function() { return "What if"; })
 
                 svg.selectAll("myCountryText")
@@ -443,6 +615,7 @@ function run() {
                   .attr("y", 120)
                   .style("font-family","Space Mono")
                   .attr("fill", "white")
+                  .attr("font-size", "16px")
                   .text(function() { return mycountry; })
 
                 svg.selectAll("myCountryText")
@@ -454,6 +627,7 @@ function run() {
                   .attr("y", 140)
                   .style("font-family","Space Mono")
                   .attr("fill", "white")
+                  .attr("font-size", "16px")
                   .text(function() { return "had as many"; })
 
                 svg.selectAll("myCountryText")
@@ -465,6 +639,7 @@ function run() {
                   .attr("y", 160)
                   .style("font-family","Space Mono")
                   .attr("fill", "white")
+                  .attr("font-size", "16px")
                   .text(function() { return "refugees"; })
 
                   svg.selectAll("myCountryText")
@@ -476,6 +651,7 @@ function run() {
                     .attr("y", 180)
                     .style("font-family","Space Mono")
                     .attr("fill", "white")
+                    .attr("font-size", "16px")
                     .text(function() { return "as Syria"; })
 
 
@@ -510,6 +686,7 @@ function run() {
           .attr("y", 10)
           .style("font-family","Space Mono")
           .attr("fill", "white")
+          .attr("font-size", "16px")
           .text(function() { return "This would be"; })
 
           svg.selectAll("myCountryText")
@@ -521,6 +698,7 @@ function run() {
             .attr("y", 30)
             .style("font-family","Space Mono")
             .attr("fill", "white")
+            .attr("font-size", "16px")
             .text(function() { return "proportion of "; })
 
             svg.selectAll("myCountryText")
@@ -532,6 +710,7 @@ function run() {
               .attr("y", 50)
               .style("font-family","Space Mono")
               .attr("fill", "white")
+              .attr("font-size", "16px")
               .text(function() { return "refugees in "; })
 
             svg.selectAll("myCountryText")
@@ -543,6 +722,7 @@ function run() {
               .attr("y", 70)
               .style("font-family","Space Mono")
               .attr("fill", "white")
+              .attr("font-size", "16px")
               .text(function() { return mycountry; })
 
               svg.selectAll("myCountryText")
@@ -554,6 +734,7 @@ function run() {
                 .attr("y", 120)
                 .style("font-family","Space Mono")
                 .attr("fill", "white")
+                .attr("font-size", "16px")
                 .text(function() { return "It sums up to"; })
 
                 svg.selectAll("myCountryText")
@@ -565,7 +746,8 @@ function run() {
                   .attr("y", 140)
                   .style("font-family","Space Mono")
                   .attr("fill", "white")
-                  .text(function() { return roundToTwo((leaveCountry*divider) / 1000000) + " million"; })
+                  .attr("font-size", "16px")
+                  .text(function() { return roundToTwo((leaveCountry*divider) / 1000000).toLocaleString() + " million"; })
 
                 svg.selectAll("myCountryText")
                   .data(countryData).enter()
@@ -576,6 +758,7 @@ function run() {
                   .attr("y", 160)
                   .style("font-family","Space Mono")
                   .attr("fill", "white")
+                  .attr("font-size", "16px")
                   .text(function() { return "people"; })
 
 
@@ -592,6 +775,7 @@ function run() {
       function click5() {
 
         svg.selectAll("text")
+
         .remove();
 
         svg.selectAll("myCountryText")
@@ -603,6 +787,7 @@ function run() {
           .attr("y", 10)
           .style("font-family","Space Mono")
           .attr("fill", "white")
+          .attr("font-size", "16px")
           .text(function() { return "Can you guess"; })
 
           svg.selectAll("myCountryText")
@@ -614,6 +799,7 @@ function run() {
             .attr("y", 30)
             .style("font-family","Space Mono")
             .attr("fill", "white")
+            .attr("font-size", "16px")
             .text(function() { return "how many of them"; })
 
             svg.selectAll("myCountryText")
@@ -625,6 +811,7 @@ function run() {
               .attr("y", 50)
               .style("font-family","Space Mono")
               .attr("fill", "white")
+              .attr("font-size", "16px")
               .text(function() { return "would be"; })
 
               svg.selectAll("myCountryText")
@@ -636,6 +823,7 @@ function run() {
                 .attr("y", 70)
                 .style("font-family","Space Mono")
                 .attr("fill", "white")
+                .attr("font-size", "16px")
                 .text(function() { return "under 18?"; })
 
       }
@@ -643,7 +831,7 @@ function run() {
       function click6() {
 
         svg.selectAll("text")
-          .remove();
+        .remove();
 
           svg.selectAll("myCountryText")
             .data(countryData).enter()
@@ -654,6 +842,7 @@ function run() {
             .attr("y", 10)
             .style("font-family","Space Mono")
             .attr("fill", "white")
+            .attr("font-size", "16px")
             .text(function() { return "It's total of"; })
 
             svg.selectAll("myCountryText")
@@ -665,7 +854,8 @@ function run() {
               .attr("y", 30)
               .style("font-family","Space Mono")
               .attr("fill", "white")
-              .text(function() { return roundToTwo((leaveCountry*divider*syrianKidPct) / 1000000) + " million"; })
+              .attr("font-size", "16px")
+              .text(function() { return roundToTwo((leaveCountry*divider*syrianKidPct) / 1000000).toLocaleString() + " million"; })
 
               svg.selectAll("myCountryText")
                 .data(countryData).enter()
@@ -676,6 +866,7 @@ function run() {
                 .attr("y", 50)
                 .style("font-family","Space Mono")
                 .attr("fill", "white")
+                .attr("font-size", "16px")
                 .text(function() { return "children and teens"; })
 
           svg.selectAll(".refugeeyesblocks")
@@ -705,6 +896,7 @@ function run() {
           .attr("y", height/2 - 10)
           .style("font-family","Space Mono")
           .attr("fill", "white")
+          .attr("font-size", "16px")
           .text(function() { return "No matter how far you are from Syria"; })
 
           svg.selectAll("myCountryText")
@@ -716,6 +908,7 @@ function run() {
             .attr("y", height/2 + 10)
             .style("font-family","Space Mono")
             .attr("fill", "white")
+            .attr("font-size", "16px")
             .text(function() { return "we all should care"; })
 
           svg.selectAll("myCountryText")
@@ -727,11 +920,29 @@ function run() {
               .attr("y", height - 20)
               .style("font-family","Space Mono")
               .attr("fill", "white")
+              .attr("font-size", "16px")
               .text(function() { return "Give your Support"; })
 
-          svg.selectAll(".next")
-            .append("text")
-            .text("Replay")
+          d3.selectAll(".next")
+            .text("Start again")
+            .style("opacity", 0)
+
+          d3.selectAll(".button")
+            .style("background-color", "black")
+
+          d3.selectAll(".next")
+            .transition()
+            .delay(7500)
+            .duration(1000)
+            .style("opacity", 1)
+
+          d3.selectAll(".button")
+            .transition()
+            .delay(7500)
+            .duration(1000)
+            .style("background-color", "white")
+
+
 
 
 
