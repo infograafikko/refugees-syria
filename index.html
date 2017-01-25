@@ -264,9 +264,7 @@ function roundToTwo(num) {
     return +(Math.round(num + "e+2")  + "e-2");
 }
 
-function roundToOne(num) {
-    return +(Math.round(num + "e+1")  + "e-1");
-}
+
 
 
 // set the dimensions and margins of the graph
@@ -307,7 +305,7 @@ function run() {
       d.milpop = d.totpop / 1000000,
       d.multiplier = 0.24,
       d.reduced = d.multiplier * d.milpop,
-      d.reducedRound = roundToOne(d.reduced),
+      d.reducedRound = roundToTwo(d.reduced),
       d.reducedLoc = d.reducedRound.toLocaleString(),
       d["Ref-orig-tot"] = +d["Ref-orig-tot"]*1000,
       d.refpct = d["Ref-orig-tot"]/d.totpop
