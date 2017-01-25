@@ -244,13 +244,20 @@ If <select id="myCountry" onchange="countryChange()">
    was in situation like <strong>Syria </strong></p><p><button class = "enter" onclick="run()">Enter scenario ↓</button></p><hr></div>
 
 <script>
+$("#myCountry").val('USA');
 
-var mycountry = $('#myCountry').find('option:selected').text();
+var mycountry = "USA";
 var vscountry = "Syrian Arab Republic";
 var blocksEnter;
 var blocksUpdate;
 
 var myCountryText;
+
+function countryChange() {
+
+  mycountry = (document.getElementById("myCountry").value);
+
+}
 
 //Population calculations
 function roundToTwo(num) {
