@@ -333,6 +333,7 @@ function run() {
 
     var syrianKidPct = 0.47;
     var prewarPop = 24.5;
+    prewarPop = prewarPop.toLocaleString()
 
     var popblocks = countryData[0]["totpop"] / divider;
     var leaveCountry = popblocks * syriaData[0]["refpct"]
@@ -433,8 +434,8 @@ function run() {
           .attr("y", height/2 - 50)
           .style("font-family","Space Mono")
           .attr("fill", "white")
-          .attr("font-size", "15.9px")
-          .text(function() { return "Prewar population in Syria was " + prewarPop.toLocaleString() + " million people"; });
+          .attr("font-size", "16x")
+          .text(function() { return "Prewar population in Syria was " + prewarPop + " million people"; });
 
         svg.selectAll("myCountryText")
           .data(countryData).enter()
@@ -445,7 +446,7 @@ function run() {
           .attr("y", height/2 - 30)
           .style("font-family","Space Mono")
           .attr("fill", "white")
-          .attr("font-size", "15.9px")
+          .attr("font-size", "16px")
           .text(function(d) { return "Population in Syria has decreased by " + d.percent + " percent"; });
 
         svg.selectAll("myCountryText")
@@ -457,7 +458,7 @@ function run() {
           .attr("y", height/2)
           .style("font-family","Space Mono")
           .attr("fill", "white")
-          .attr("font-size", "15.9px")
+          .attr("font-size", "16px")
           .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; });
 
         svg.selectAll("myCountryText")
@@ -469,7 +470,7 @@ function run() {
           .attr("y", height/2 + 20)
           .style("font-family","Space Mono")
           .attr("fill", "white")
-          .attr("font-size", "15.9px")
+          .attr("font-size", "16px")
           .text(function(d) { return "there would be " + roundToTwo(d.reduced).toLocaleString() + " million people less than prewar"; });
 
         svg.selectAll("myCountryText")
@@ -481,7 +482,7 @@ function run() {
           .attr("y", height - 10)
           .style("font-family","Space Mono")
           .attr("fill", "white")
-          .attr("font-size", "15.9px")
+          .attr("font-size", "16px")
           .text("Please, click 'Next'");
 
 
