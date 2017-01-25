@@ -304,18 +304,19 @@ function run() {
       d.multiplier = 0.24,
       d.percent = 24,
       d.reduced = d.multiplier * d.milpop,
-      d.reducedLoc = roundToTwo(d.reduced.toLocaleString()),
+      d.reducedRound = roundToTwo(d.reduced)
       d["Ref-orig-tot"] = +d["Ref-orig-tot"]*1000,
       d.refpct = d["Ref-orig-tot"]/d.totpop
+
     })
 
     //Chosen country
-    countryData = data.filter(function(d) {
+    var countryData = data.filter(function(d) {
       return d.Region == mycountry;
     })
 
     //Syria data
-    syriaData =   data.filter(function(d) {
+    var syriaData =   data.filter(function(d) {
         return d.Region == vscountry;
       })
 
@@ -472,7 +473,7 @@ function run() {
           .style("font-family","Space Mono")
           .attr("fill", "white")
           .attr("font-size", "16px")
-          .text(function(d) { return "there would be " + d.reducedLoc + " million people less than prewar"; });
+          .text(function(d) { return "there would be " + d.reducedRound.toLocaleString() + " million people less than prewar"; });
 
         svg.selectAll("myCountryText")
           .data(countryData).enter()
