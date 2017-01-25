@@ -468,7 +468,7 @@ function run() {
           .text(function() { return "If " + mycountry + " faced the same fate as Syria..."; });
 
         svg.selectAll("myCountryText")
-          .data(countryData).enter()
+          .data(syriaData).enter()
           .append("text")
           .transition()
           .delay(8000)
