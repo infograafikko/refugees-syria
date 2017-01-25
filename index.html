@@ -7,6 +7,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <style>
 
@@ -244,7 +245,7 @@ If <select id="myCountry" onchange="countryChange()">
 
 <script>
 
-var mycountry = "USA";
+var mycountry = $('#myCountry').find(":selected").text();;
 var vscountry = "Syrian Arab Republic";
 var blocksEnter;
 var blocksUpdate;
@@ -254,10 +255,6 @@ var myCountryText;
 //Population calculations
 function roundToTwo(num) {
     return +(Math.round(num + "e+2")  + "e-2");
-}
-
-function countryChange() {
-  mycountry = (document.getElementById("myCountry").value);
 }
 
 
@@ -432,8 +429,8 @@ function run() {
           .attr("font-size", "16px")
           .text(function() { return "Prewar population in Syria was " +  prewarPop.toLocaleString() + " million people"; })
 
-          svg.selectAll("myCountryText")
-            .data(syriaData).enter()
+          svg.selectAll("myCountryText2")
+            .data(countryData).enter()
             .append("text")
             .transition()
             .delay(2500)
@@ -444,7 +441,7 @@ function run() {
             .attr("font-size", "16px")
             .text(function(d) { return "Population in Syria has decreased by " +  d.percent + " percent"; })
 
-          svg.selectAll("myCountryText")
+          svg.selectAll("myCountryText3")
             .data(countryData).enter()
             .append("text")
             .transition()
@@ -456,7 +453,7 @@ function run() {
             .attr("font-size", "16px")
             .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; })
 
-          svg.selectAll("myCountryText")
+          svg.selectAll("myCountryText4")
               .data(countryData).enter()
               .append("text")
               .transition()
@@ -468,8 +465,8 @@ function run() {
               .attr("font-size", "16px")
               .text(function(d) { return "there would be " + roundToTwo(d.reduced).toLocaleString() + " million people less than prewar"; })
 
-              svg.selectAll("myCountryText")
-                .data(syriaData).enter()
+              svg.selectAll("myCountryText5")
+                .data(countryData).enter()
                 .append("text")
                 .transition()
                 .delay(10500)
@@ -944,6 +941,12 @@ function run() {
             .duration(1000)
             .style("background-color", "white")
 
+            d3.selectAll(".footer")
+              .transition()
+              .delay(8500)
+              .duration(1000)
+              .style("opacity", 1)
+
 
 
 
@@ -962,5 +965,9 @@ function run() {
 </script>
 <div id="bottombar">
 <div class = "button" stage = "0"><text class = "next">Next</text></div>
+</div>
+<div class="footer">
+<hr>
+<p><strong>©Joel Kanerva 2017 <a href="https://www.infograafikko.fi">infograafikko.fi</a>, Data source: <a href="https://docs.google.com/spreadsheets/d/1jdAtYxYa_EE_DTWEAJxIHCehpCSUEy5EVIU_uGvKk1E/edit#gid=234272824">Unicef Data</a></strong></p>
 </div>
 </body>
