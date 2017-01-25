@@ -453,7 +453,7 @@ function run() {
           .style("font-family","Space Mono")
           .attr("fill", "white")
           .attr("font-size", "16px")
-          .text(function(d) { return "Population in Syria has decreased by " + percent + " percent"; });
+          .text(function() { return "Population in Syria has decreased by " + percent + " percent"; });
 
         svg.selectAll("myCountryText")
           .data(countryData).enter()
@@ -465,7 +465,7 @@ function run() {
           .style("font-family","Space Mono")
           .attr("fill", "white")
           .attr("font-size", "16px")
-          .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; });
+          .text(function() { return "If " + mycountry + " faced the same fate as Syria..."; });
 
         svg.selectAll("myCountryText")
           .data(countryData).enter()
@@ -477,7 +477,7 @@ function run() {
           .style("font-family","Space Mono")
           .attr("fill", "white")
           .attr("font-size", "16px")
-          .text(function(d) { return "there would be " + reduced + " million people less than prewar"; });
+          .text(function() { return "there would be " + reduced + " million people less than prewar"; });
 
         svg.selectAll("myCountryText")
           .data(countryData).enter()
