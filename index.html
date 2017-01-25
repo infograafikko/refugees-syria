@@ -434,9 +434,9 @@ function run() {
           .style("font-family","Space Mono")
           .attr("fill", "white")
           .attr("font-size", "16px")
-          .text(function() { return "Prewar population in Syria was " +  prewarPop.toLocaleString() + " million people"; })
+          .text(function() { return "Prewar population in Syria was " + prewarPop.toLocaleString() + " million people"; });
 
-          svg.selectAll("myCountryText2")
+          svg.selectAll("myCountryText")
             .data(countryData).enter()
             .append("text")
             .transition()
@@ -446,9 +446,9 @@ function run() {
             .style("font-family","Space Mono")
             .attr("fill", "white")
             .attr("font-size", "16px")
-            .text(function(d) { return "Population in Syria has decreased by " +  d.percent + " percent"; })
+            .text(function(d) { return "Population in Syria has decreased by " + d.percent + " percent"; });
 
-          svg.selectAll("myCountryText3")
+          svg.selectAll("myCountryText")
             .data(countryData).enter()
             .append("text")
             .transition()
@@ -458,9 +458,9 @@ function run() {
             .style("font-family","Space Mono")
             .attr("fill", "white")
             .attr("font-size", "16px")
-            .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; })
+            .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; });
 
-          svg.selectAll("myCountryText4")
+          svg.selectAll("myCountryText")
               .data(countryData).enter()
               .append("text")
               .transition()
@@ -470,9 +470,9 @@ function run() {
               .style("font-family","Space Mono")
               .attr("fill", "white")
               .attr("font-size", "16px")
-              .text(function(d) { return "there would be " + roundToTwo(d.reduced).toLocaleString() + " million people less than prewar"; })
+              .text(function(d) { return "there would be " + roundToTwo(d.reduced).toLocaleString() + " million people less than prewar"; });
 
-              svg.selectAll("myCountryText5")
+              svg.selectAll("myCountryText")
                 .data(countryData).enter()
                 .append("text")
                 .transition()
@@ -482,7 +482,7 @@ function run() {
                 .style("font-family","Space Mono")
                 .attr("fill", "white")
                 .attr("font-size", "16px")
-                .text("Please, click 'Next'")
+                .text("Please, click 'Next'");
 
 
         }
