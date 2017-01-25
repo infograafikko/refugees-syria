@@ -304,6 +304,7 @@ function run() {
       d.multiplier = 0.24,
       d.percent = 24,
       d.reduced = d.multiplier * d.milpop,
+      d.reducedLoc = roundToTwo(d.reduced.toLocaleString()),
       d["Ref-orig-tot"] = +d["Ref-orig-tot"]*1000,
       d.refpct = d["Ref-orig-tot"]/d.totpop
     })
@@ -471,7 +472,7 @@ function run() {
           .style("font-family","Space Mono")
           .attr("fill", "white")
           .attr("font-size", "16px")
-          .text(function(d) { return "there would be " + roundToTwo(d.reduced).toLocaleString() + " million people less than prewar"; });
+          .text(function(d) { return "there would be " + d.reducedLoc + " million people less than prewar"; });
 
         svg.selectAll("myCountryText")
           .data(countryData).enter()
