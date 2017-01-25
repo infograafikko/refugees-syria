@@ -338,6 +338,8 @@ function run() {
     var prewarPop = 24.5;
     prewarPop = prewarPop.toLocaleString()
 
+    var reduced = countryData[0]["reducedLoc"]
+
     var popblocks = countryData[0]["totpop"] / divider;
     var leaveCountry = popblocks * syriaData[0]["refpct"]
     var leaveCountryKids = leaveCountry * syrianKidPct
@@ -474,7 +476,7 @@ function run() {
           .style("font-family","Space Mono")
           .attr("fill", "white")
           .attr("font-size", "16px")
-          .text(function(d) { return "there would be " + d.reducedLoc + " million people less than prewar"; });
+          .text(function(d) { return "there would be " + reduced + " million people less than prewar"; });
 
         svg.selectAll("myCountryText")
           .data(countryData).enter()
