@@ -404,18 +404,18 @@ function run() {
           } else if (d3.select(this).attr("stage") == "3") {
             click4();
             d3.select(this).attr("stage", "4")
-        } else if (d3.select(this).attr("stage") == "4") {
-          click5();
-          d3.select(this).attr("stage", "5")
-        } else if (d3.select(this).attr("stage") == "5") {
-          click6();
-          d3.select(this).attr("stage", "6")
-        } else if (d3.select(this).attr("stage") == "6") {
-          click7();
-          d3.select(this).attr("stage", "7")
-        } else if (d3.select(this).attr("stage") == "7") {
-        d3.select(this).attr("stage", "0")
-        run();
+          } else if (d3.select(this).attr("stage") == "4") {
+            click5();
+            d3.select(this).attr("stage", "5")
+          } else if (d3.select(this).attr("stage") == "5") {
+            click6();
+            d3.select(this).attr("stage", "6")
+          } else if (d3.select(this).attr("stage") == "6") {
+            click7();
+            d3.select(this).attr("stage", "7")
+          } else if (d3.select(this).attr("stage") == "7") {
+          d3.select(this).attr("stage", "0")
+          run();
 }})
 
 
@@ -433,56 +433,56 @@ function run() {
           .attr("y", height/2 - 50)
           .style("font-family","Space Mono")
           .attr("fill", "white")
-          .attr("font-size", "16px")
+          .attr("font-size", "15.9px")
           .text(function() { return "Prewar population in Syria was " + prewarPop.toLocaleString() + " million people"; });
 
-          svg.selectAll("myCountryText")
-            .data(countryData).enter()
-            .append("text")
-            .transition()
-            .delay(2500)
-            .attr("x", 1)
-            .attr("y", height/2 - 30)
-            .style("font-family","Space Mono")
-            .attr("fill", "white")
-            .attr("font-size", "16px")
-            .text(function(d) { return "Population in Syria has decreased by " + d.percent + " percent"; });
+        svg.selectAll("myCountryText")
+          .data(countryData).enter()
+          .append("text")
+          .transition()
+          .delay(2550)
+          .attr("x", 1)
+          .attr("y", height/2 - 30)
+          .style("font-family","Space Mono")
+          .attr("fill", "white")
+          .attr("font-size", "15.9px")
+          .text(function(d) { return "Population in Syria has decreased by " + d.percent + " percent"; });
 
-          svg.selectAll("myCountryText")
-            .data(countryData).enter()
-            .append("text")
-            .transition()
-            .delay(5500)
-            .attr("x", 1)
-            .attr("y", height/2)
-            .style("font-family","Space Mono")
-            .attr("fill", "white")
-            .attr("font-size", "16px")
-            .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; });
+        svg.selectAll("myCountryText")
+          .data(countryData).enter()
+          .append("text")
+          .transition()
+          .delay(5500)
+          .attr("x", 1)
+          .attr("y", height/2)
+          .style("font-family","Space Mono")
+          .attr("fill", "white")
+          .attr("font-size", "15.9px")
+          .text(function(d) { return "If " + mycountry + " faced the same fate as Syria..."; });
 
-          svg.selectAll("myCountryText")
-              .data(countryData).enter()
-              .append("text")
-              .transition()
-              .delay(8000)
-              .attr("x", 1)
-              .attr("y", height/2 + 20)
-              .style("font-family","Space Mono")
-              .attr("fill", "white")
-              .attr("font-size", "16px")
-              .text(function(d) { return "there would be " + roundToTwo(d.reduced).toLocaleString() + " million people less than prewar"; });
+        svg.selectAll("myCountryText")
+          .data(countryData).enter()
+          .append("text")
+          .transition()
+          .delay(8000)
+          .attr("x", 1)
+          .attr("y", height/2 + 20)
+          .style("font-family","Space Mono")
+          .attr("fill", "white")
+          .attr("font-size", "15.9px")
+          .text(function(d) { return "there would be " + roundToTwo(d.reduced).toLocaleString() + " million people less than prewar"; });
 
-              svg.selectAll("myCountryText")
-                .data(countryData).enter()
-                .append("text")
-                .transition()
-                .delay(10500)
-                .attr("x", 1)
-                .attr("y", height - 10)
-                .style("font-family","Space Mono")
-                .attr("fill", "white")
-                .attr("font-size", "16px")
-                .text("Please, click 'Next'");
+        svg.selectAll("myCountryText")
+          .data(countryData).enter()
+          .append("text")
+          .transition()
+          .delay(10500)
+          .attr("x", 1)
+          .attr("y", height - 10)
+          .style("font-family","Space Mono")
+          .attr("fill", "white")
+          .attr("font-size", "15.9px")
+          .text("Please, click 'Next'");
 
 
         }
